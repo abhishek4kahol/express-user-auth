@@ -4,6 +4,14 @@ const app = express();
 const path = require('path');
 const index = require('./routes/index');
 const mongoose = require('mongoose');
+const session = require('express-session');
+
+//using session for tracking logins
+app.use(session({
+  secret: 'js is good',
+  resave: true,
+  saveUninitialized: false
+}));
 
 //mongodb connection
 mongoose.connect("mongodb://localhost:27017/bookworm");
@@ -13,14 +21,16 @@ db.on('error', console.error.bind(console, 'connection error'));
 
 //parse
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({
+  extended: false
+}));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'pug');
 
-app.use('/',index);
+app.use('/', index);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -40,7 +50,7 @@ app.use((err, req, res, next) => {
   res.render('error');
 });
 
-app.listen(3000 , () => {
+app.listen(3000, () => {
   console.log('server started on port :: 3000');
 })
 
