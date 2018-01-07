@@ -41,5 +41,21 @@ const UserSchema =new mongoose.Schema({
 //   });
 // });
 
+//authenticate input against database documents
+UserSchema.statics.authenticate = (email,password,callback) =>{
+  User.findOne({
+    email: email
+  }).exec((err,user) =>{
+    if(err) {
+      return callback(err);
+    } else if (!user) {
+      var err = new Error('User not found.');
+      err.status =401;
+      return callback(err);
+    }
+    return callback(null,user);
+  })
+}
+
 const User = mongoose.model('myuser', UserSchema);
 module.exports = User;

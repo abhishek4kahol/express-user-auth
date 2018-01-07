@@ -1,0 +1,39 @@
+nav#mainNav.navbar.navbar-expand-lg.navbar-light.fixed-top
+  .container
+    a.navbar-brand.js-scroll-trigger(href='#page-top') Bookworm
+    button.navbar-toggler.navbar-toggler-right(type='button', data-toggle='collapse', data-target='#navbarResponsive', aria-controls='navbarResponsive', aria-expanded='false', aria-label='Toggle navigation')
+      span.navbar-toggler-icon
+    #navbarResponsive.collapse.navbar-collapse
+      ul.navbar-nav.ml-auto
+        if !currentUser
+          a.nav-items.nav-link(href='register') Sign Up
+        a.nav-items.nav-link(href='about') About
+        a.nav-items.nav-link(href='contact') Contact
+        a.nav-items.nav-link(href='profile') My Profile
+        if currentUser
+          div
+            img.avatar.image-circle.hidden-xs-down(src='/images/avatar.png',alt='avatar')
+            a.btn.btn-light.pull-md-right(href='/logout') Log Out
+        else  
+          a.btn.btn-info.pull-md-right(href='login') Login
+
+//- 
+//- nav.navbar.navbar-fixed-top.navbar-dark
+//-   button.navbar-toggler.hidden-md-up.pull-xs-right(type='button', data-toggle='collapse',data-target='#navbar') &#x2630;
+//-   #navbar.navbar-nav.collapse.navbar-toggleable-sm
+//-     .container
+//-       a.navbar-brand(href='/')
+//-         i.icn-logo.materisl-icons.bookmark_border
+//-         | Bookworm
+//-       .nav-items.clearfix
+//-         if !currentUser
+//-           a.nav-items.nav-link(href='register') Sign Up
+//-         a.nav-items.nav-link(href='about') About
+//-         a.nav-items.nav-link(href='contact') Contact
+//-         a.nav-items.nav-link(href='profile') My Profile
+//-       if currentUser
+//-         div
+//-           img.avatar.imag-circle.hidden-xs-down(src='/images/avatar.png',alt='avatar')
+//-           a.btn.btn-light.pull-md-right(href='/logout') Log Out
+//-       else  
+//-         a.btn.btn-info.pull-md-right(href='login') Login
