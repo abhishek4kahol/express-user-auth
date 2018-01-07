@@ -10,7 +10,6 @@ router.get('/profile', (req, res, next) => {
     err.status= 403;
     return next(err);
   }
-  console.log('123');
   User.findById(req.session.userId)
     .exec((error,user) => {
       if(error) {
