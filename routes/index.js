@@ -4,12 +4,12 @@ const User = require('../models/user');
 const mid = require('../middleware');
 
 //GET about
-router.get('/profile', (req, res, next) => {
-  if(! req.session.userId){
-    var err = new Error('You are not authorized to view this page.');
-    err.status= 403;
-    return next(err);
-  }
+router.get('/profile',mid.requiresLogin, (req, res, next) => {
+  // if(! req.session.userId){
+  //   var err = new Error('You are not authorized to view this page.');
+  //   err.status= 403;
+  //   return next(err);
+  // }
   User.findById(req.session.userId)
     .exec((error,user) => {
       if(error) {
